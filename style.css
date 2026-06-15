@@ -1,4 +1,4 @@
-/* ===================== RESET ===================== */
+/*RESET*/
 * {
     margin: 0;
     padding: 0;
@@ -6,7 +6,7 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* ===================== BASE ===================== */
+/* BASE */
 body {
     background-color: #0e0e0e;
     color: #f0ebe0;
@@ -143,7 +143,7 @@ body {
     color: #c9a84c;
 }
 
-/* ===================== HERO ===================== */
+/*HERO*/
 .hero {
     position: relative;
     min-height: 340px;
@@ -216,7 +216,7 @@ body {
     color: #b89fdd;
 }
 
-/* ===================== CATEGORY NAV ===================== */
+/*CATEGORY NAV*/
 .cat-nav {
     display: flex;
     gap: 4px;
@@ -248,7 +248,7 @@ body {
     font-weight: 600;
 }
 
-/* ===================== MAIN ===================== */
+/*MAIN*/
 .main-content {
     padding: 40px 24px;
     min-height: 200px;
@@ -260,7 +260,7 @@ body {
     font-size: 1rem;
 }
 
-/* ===================== FOOTER ===================== */
+/*FOOTER*/
 .footer {
     text-align: center;
     padding: 32px 20px;
@@ -271,4 +271,45 @@ body {
 }
 .footer span {
     color: #c9a84c;
+}
+
+/* SECTION BLOCKS */
+.category-section-block {
+    padding: 32px 24px 16px;
+    margin-bottom: 40px;
+}
+
+/* SECTION HEADER */
+.section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+.section-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+.dot-dessert  { background: #e8855a; }
+.dot-breakfast { background: #6abf69; }
+.dot-lunch    { background: #5b9bd5; }
+
+.section-header h2 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #f0ebe0;
+    margin-bottom: 4px;
+}
+.section-header p {
+    font-size: 13px;
+    color: #b89fdd;
+}
+
+/* RECIPE GRID */
+.recipe-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+    gap: 20px;
 }
