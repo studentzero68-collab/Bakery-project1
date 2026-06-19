@@ -264,3 +264,31 @@ body {
     margin-bottom: 12px;
     line-height: 1.5;
 }
+
+.relation-tags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+}
+.rel-tag {
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-weight: 500;
+}
+.rel-family {
+    background-color: #2a1f3d;
+    color: #b89fdd;
+    border: 1px solid #3d2d5a;
+}
+.rel-lover {
+    background-color: #2d1520;
+    color: #e8849a;
+    border: 1px solid #4a2030;
+}
+.rel-friend {
+    background-color: #112820;
+    color: #6fcfbe;
+    border: 1px solid #1d4035;
+}
