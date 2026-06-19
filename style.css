@@ -326,3 +326,36 @@ body {
     margin-top: 10px;
     font-weight: 600;
 }
+
+.ingredient-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.ingredient-list li {
+    font-size: 13px;
+    color: #b89fdd;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.ingredient-list li::before {
+    content: '';
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background-color: #c9a84c;
+    flex-shrink: 0;
+}
+.steps-list {
+    padding-left: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.steps-list li {
+    font-size: 13px;
+    color: #b89fdd;
+    line-height: 1.5;
+}
