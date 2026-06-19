@@ -214,10 +214,14 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
     gap: 20px;
+    align-items: start;
 }
 
 /* RECIPE CARDS */
 .recipe-card {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
     background-color: #1a0033;
     border: 1px solid #4a0080;
     border-radius: 16px;
