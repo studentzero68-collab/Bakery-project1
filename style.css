@@ -359,3 +359,24 @@ body {
     color: #b89fdd;
     line-height: 1.5;
 }
+
+/* PLACEHOLDER CARD */
+.placeholder-card {
+    background-color: #0e0e0e;
+    border: 1px dashed #4a0080;
+    border-radius: 16px;
+    padding: 40px 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+.ph-icon {
+    font-size: 2.5rem;
+    opacity: .3;
+}
+.placeholder-card p {
+    font-size: 13px;
+    color: #b89fdd;
+}
