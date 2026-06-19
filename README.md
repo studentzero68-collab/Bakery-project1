@@ -1,4 +1,4 @@
-# 🎮 Baker's Delight — Mukelani's Kitchen
+# Baker's Delight — Mukelani's Kitchen
 
 > *"Some people express love through words. I express it through what comes out of the oven."*
 
@@ -14,9 +14,9 @@ Every recipe in this project comes with more than just ingredients and steps. It
 
 ## What's inside
 
-- 🍰 **Desserts** — Sweet wins. The final boss of any meal.
-- 🌅 **Breakfast** — Start your day like a main character.
-- 🥗 **Lunch Bakes** — Savoury power-ups for the middle of the day.
+- **Desserts** — Sweet wins. The final boss of any meal.
+- **Breakfast** — Start your day like a main character.
+- **Lunch Bakes** — Savoury power-ups for the middle of the day.
 
 Each recipe card includes:
 - Ingredients list
@@ -39,7 +39,7 @@ Each recipe card includes:
 
 ## Project status
 
-🚧 Currently in progress — recipes and features are being added step by step.
+ Currently in progress — recipes and features are being added step by step.
 
 ---
 
@@ -55,8 +55,8 @@ Baking and coding are not that different. Both take patience, precision, and a w
 
 **Mukelani N. Sindana**  
 Full Stack Web Developer in training | iHub Africa | Gauteng, South Africa  
-🎮 Gamer · ✨ Anime fan · 🏆 Disciplined baker
+Gamer · Anime fan · precise baker
 
 ---
 
-*Built with flour, butter, and discipline.* 🎮✨
+*Built with flour, butter, and discipline.* 
