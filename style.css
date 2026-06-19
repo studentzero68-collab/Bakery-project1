@@ -29,7 +29,12 @@ body {
 .hero-bg {
     position: absolute;
     inset: 0;
-    background: radial-gradient(ellipse at 50% 0%, #4a0080 0%, #0e0e0e 70%);
+    background-image:
+      linear-gradient(rgba(14, 14, 14, 0.64), rgba(14, 14, 14, 0.64)),
+      url("assets/download (4).jpg");
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
     z-index: 0;
 }
 .hero-pattern {
@@ -159,7 +164,12 @@ body {
 .hero-bg {
     position: absolute;
     inset: 0;
-    background: radial-gradient(ellipse at 50% 0%, #4a0080 0%, #0e0e0e 70%);
+    background-image:
+      linear-gradient(rgba(14, 14, 14, 0.64), rgba(14, 14, 14, 0.64)),
+      url("assets/download (4).jpg");
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
     z-index: 0;
 }
 .hero-pattern {
@@ -274,9 +284,34 @@ body {
 }
 
 /* SECTION BLOCKS */
+.main-content {
+    padding: 40px 24px;
+    min-height: 200px;
+    background-image: url("assets/1096626578034021546.jpg");
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    position: relative;
+    overflow: hidden;
+}
+.main-content::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(14, 14, 14, 0.82);
+    z-index: 0;
+}
+.main-content > * {
+    position: relative;
+    z-index: 1;
+}
+
 .category-section-block {
     padding: 32px 24px 16px;
     margin-bottom: 40px;
+    background: rgba(14, 14, 14, 0.16);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
 }
 
 /* SECTION HEADER */
