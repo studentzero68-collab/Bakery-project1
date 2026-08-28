@@ -1,8 +1,16 @@
 function toggleCard(btn) {
-    const details = btn.nextElementSibling;
+    const details = btn?.nextElementSibling;
+
+    if (!details || !details.classList) {
+        return;
+    }
+
     const isOpen = details.classList.contains('open');
-    details.classList.toggle('open');
-    btn.textContent = isOpen ? 'Show Recipe' : 'Hide Recipe';
+    const nextState = !isOpen;
+
+    details.classList.toggle('open', nextState);
+    btn.textContent = nextState ? 'Hide Recipe' : 'Show Recipe';
+    btn.setAttribute('aria-expanded', String(nextState));
 }
 
 function initCategoryFilter() {
@@ -13,17 +21,26 @@ function initCategoryFilter() {
         button.addEventListener('click', () => {
             const target = button.dataset.target;
 
-            // update which button looks active
             buttons.forEach((btn) => btn.classList.remove('active'));
             button.classList.add('active');
 
-            // show everything, or just the matching section
             sections.forEach((section) => {
                 const matches = target === 'all' || section.id === target;
                 section.style.display = matches ? '' : 'none';
+                section.hidden = !matches;
             });
         });
     });
 }
 
-initCategoryFilter();
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.card-expand-btn').forEach((button) => {
+        button.onclick = null;
+        button.addEventListener('click', () => toggleCard(button));
+    });
+
+    initCategoryFilter();
+});
+
+window.toggleCard = toggleCard;
+window.initCategoryFilter = initCategoryFilter;
