@@ -267,6 +267,22 @@ body {
     border-bottom: 1px solid var(--border);
 }
 
+.card-img-quiche .img-placeholder {
+    background: linear-gradient(145deg, #f5e8c8 0%, #e0c078 55%, #c89a4a 100%);
+}
+
+.card-img-rolls .img-placeholder {
+    background: linear-gradient(145deg, #e8f0d8 0%, #c8dca0 55%, #a0c070 100%);
+}
+
+.card-img-scones .img-placeholder {
+    background: linear-gradient(145deg, #f0e4d0 0%, #dcc4a0 55%, #c0a078 100%);
+}
+
+.card-img-lunch .img-placeholder {
+    background: linear-gradient(145deg, #ede4d4 0%, #d8c4a8 55%, #c0a884 100%);
+}
+
 .img-placeholder {
     width: 100%;
     height: 100%;
