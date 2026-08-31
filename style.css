@@ -72,6 +72,96 @@ body {
     font-weight: 600;
 }
 
+.page-layout {
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 24px 24px 40px;
+}
+
+.relationship-filter {
+    width: 170px;
+    flex-shrink: 0;
+    background: var(--warm-white);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 10px 12px;
+    position: sticky;
+    top: 110px;
+    box-shadow: 0 12px 24px var(--shadow);
+    transition: 0.25s ease;
+}
+
+.filter-toggle {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    background: var(--cream);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    color: var(--brown-soft);
+    padding: 8px 12px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-family: var(--font-body);
+}
+
+.filter-chevron {
+    transition: transform 0.2s ease;
+}
+
+.relationship-filter.open .filter-chevron {
+    transform: rotate(180deg);
+}
+
+.relationship-options {
+    display: none;
+    padding-top: 12px;
+}
+
+.relationship-filter.open .relationship-options {
+    display: block;
+}
+
+.relationship-filter h3 {
+    font-size: 12px;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    color: var(--brown-muted);
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.relationship-btn {
+    display: block;
+    width: 100%;
+    margin-bottom: 8px;
+    background: var(--cream);
+    border: 1px solid var(--border);
+    color: var(--brown-soft);
+    padding: 8px 10px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    font-family: var(--font-body);
+    transition: 0.2s ease;
+}
+
+.relationship-btn:hover,
+.relationship-btn.active {
+    background: var(--blush);
+    border-color: var(--gold);
+    color: var(--gold);
+}
+
 /* FOOTER */
 .footer {
     text-align: center;

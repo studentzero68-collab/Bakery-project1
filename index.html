@@ -27,15 +27,15 @@
   </div>
 
   <!-- CATEGORY NAV -->
-    <div class="cat-nav">
+  <div class="cat-nav">
     <button class="cat-btn active" data-target="all">All Recipes</button>
     <button class="cat-btn" data-target="sec-dessert">Desserts</button>
     <button class="cat-btn" data-target="sec-breakfast">Breakfast</button>
     <button class="cat-btn" data-target="sec-lunch">Lunch Bakes</button>
   </div>
 
-  <!-- MAIN CONTENT -->
-  <main class="main-content">
+  <div class="page-layout">
+    <main class="main-content">
 
     <!-- DESSERTS SECTION -->
     <div id="sec-dessert" class="category-section-block">
@@ -514,7 +514,24 @@
       </div>
     </div>
 
-  </main>
+    </main>
+
+    <aside class="relationship-filter" aria-label="Filter recipes by audience">
+      <button class="filter-toggle" type="button" aria-expanded="false" aria-controls="relationship-options">
+        <span>Filters</span>
+        <span class="filter-chevron">▾</span>
+      </button>
+
+      <div id="relationship-options" class="relationship-options">
+        <h3>For...</h3>
+        <button class="relationship-btn active" data-relationship="all">All</button>
+        <button class="relationship-btn" data-relationship="family">Family</button>
+        <button class="relationship-btn" data-relationship="friend">Friends</button>
+        <button class="relationship-btn" data-relationship="romantic">Romantic</button>
+      </div>
+    </aside>
+  </div>
+
   <script src="script.js" defer></script>
 
   <!-- FOOTER -->
