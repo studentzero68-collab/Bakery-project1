@@ -6,19 +6,19 @@
 }
 
 :root {
-    --cream: #faf6f0;
-    --cream-dark: #f0e8dc;
-    --warm-white: #fffdf9;
-    --brown: #3d2c1e;
-    --brown-soft: #5c4a3a;
-    --brown-muted: #8a7560;
-    --gold: #c8956c;
-    --gold-light: #e8c9a8;
-    --honey: #d4a574;
-    --blush: #f3e0d4;
-    --shadow: rgba(61, 44, 30, 0.08);
-    --shadow-deep: rgba(61, 44, 30, 0.14);
-    --border: rgba(200, 149, 108, 0.25);
+    --cream: #e8dcc8;
+    --cream-dark: #dcc8b0;
+    --warm-white: #f0e8dc;
+    --brown: #2a1f15;
+    --brown-soft: #4a3a2a;
+    --brown-muted: #6b5f52;
+    --gold: #a67d52;
+    --gold-light: #d4b084;
+    --honey: #b8885c;
+    --blush: #e0c4b0;
+    --shadow: rgba(42, 31, 21, 0.12);
+    --shadow-deep: rgba(42, 31, 21, 0.18);
+    --border: rgba(166, 125, 82, 0.3);
     --font-display: 'Playfair Display', Georgia, serif;
     --font-body: 'DM Sans', 'Segoe UI', sans-serif;
 }
@@ -357,6 +357,13 @@ body {
     border-bottom: 1px solid var(--border);
 }
 
+.recipe-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
 .card-img-quiche .img-placeholder {
     background: linear-gradient(145deg, #f5e8c8 0%, #e0c078 55%, #c89a4a 100%);
 }
@@ -464,6 +471,34 @@ body {
 
 .card-img-breakfast .img-placeholder {
     background: linear-gradient(145deg, #e8f5e0 0%, #cce8b8 55%, #a8d490 100%);
+}
+
+.card-img-brownie .img-placeholder {
+    background: linear-gradient(145deg, #4a3a2a 0%, #6b524a 55%, #8b6a5a 100%);
+}
+
+.card-img-cheesecake .img-placeholder {
+    background: linear-gradient(145deg, #f5e0d0 0%, #e8c4a0 55%, #d4a878 100%);
+}
+
+.card-img-muffins .img-placeholder {
+    background: linear-gradient(145deg, #f0d9c8 0%, #e0be9c 55%, #c8a478 100%);
+}
+
+.card-img-scone .img-placeholder {
+    background: linear-gradient(145deg, #f5dcc8 0%, #e8c0a0 55%, #d4a478 100%);
+}
+
+.card-img-focaccia .img-placeholder {
+    background: linear-gradient(145deg, #e0d4c0 0%, #d0be9c 55%, #b8a478 100%);
+}
+
+.card-img-pizza .img-placeholder {
+    background: linear-gradient(145deg, #f0dcc8 0%, #e0c0a0 55%, #c8a478 100%);
+}
+
+.card-img-garlic .img-placeholder {
+    background: linear-gradient(145deg, #f0e4d0 0%, #dcc4a0 55%, #c0a078 100%);
 }
 
 .card-body {
