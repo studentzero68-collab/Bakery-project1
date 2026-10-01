@@ -94,6 +94,28 @@ See `frontend/README.md` and `backend/README.md` for detailed setup instructions
 
 ---
 
+## Supabase Environment Setup
+
+1. Copy `.env.example` to `.env.local` inside the `frontend/` folder:
+   ```bash
+   cp frontend/.env.example frontend/.env.local
+   ```
+2. Open `frontend/.env.local`
+3. Add your Supabase Project URL
+4. Add your Supabase Publishable Key
+5. Save the file
+6. Restart the Vite development server (`npm run dev`)
+
+```
+VITE_SUPABASE_URL=your_supabase_project_url
+VITE_SUPABASE_PUBLISHABLE_KEY=your_supabase_publishable_key
+```
+
+> **Important:** `.env.local` is listed in `.gitignore` and must never be committed to GitHub.  
+> Get your credentials from [supabase.com/dashboard](https://supabase.com/dashboard) → your project → **Settings → API**.
+
+---
+
 ## Quick start
 
 ### Prerequisites
