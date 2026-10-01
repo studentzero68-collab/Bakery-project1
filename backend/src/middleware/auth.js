@@ -7,9 +7,9 @@
  * Usage:
  *   router.post('/recipes', protect, authorize('admin'), createRecipe);
  */
-const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 const AppError = require('../utils/AppError');
+const { verifyToken } = require('../utils/tokenHelper');
 
 /**
  * protect — rejects requests without a valid JWT.
@@ -23,7 +23,7 @@ async function protect(req, _res, next) {
     }
 
     const token = authHeader.split(' ')[1];
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const decoded = verifyToken(token);
 
     // Attach the live user document (excludes password)
     const user = await User.findById(decoded.id).select('-password');
