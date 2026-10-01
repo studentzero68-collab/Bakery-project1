@@ -33,7 +33,7 @@ function App() {
     <Router>
       <div className="app">
         <Navbar />
-        <main className="page-wrapper">
+        <main className="page-wrapper" id="main-content">
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/recipes" element={<RecipesPage />} />

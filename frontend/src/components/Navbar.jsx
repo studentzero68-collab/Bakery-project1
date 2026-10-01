@@ -20,6 +20,7 @@ function Navbar() {
 
   return (
     <header className={styles.navbar}>
+      <a href="#main-content" className={styles.skipLink}>Skip to main content</a>
       <div className={styles.inner}>
         {/* Brand */}
         <Link to="/" className={styles.brand}>
