@@ -134,6 +134,38 @@ npm run test:frontend
 
 ---
 
+## Testing
+
+```bash
+# Backend (Jest + Supertest — uses mongodb-memory-server, no real DB needed)
+npm run test:backend
+
+# Frontend (Vitest + React Testing Library)
+npm run test:frontend
+```
+
+### Backend test suites
+
+| Suite | Tests | Coverage |
+|---|---|---|
+| `auth.test.js` | Register, login, /me endpoint | 17 tests |
+| `recipes.test.js` | Full recipe CRUD, filtering | 19 tests |
+| `authorization.test.js` | Role-based access control | 11 tests |
+| **Total** | | **47 tests** |
+
+### Frontend test suites
+
+| Suite | Tests |
+|---|---|
+| `RecipeCard.test.jsx` | Card rendering, expand/collapse | 10 tests |
+| `LoadingState.test.jsx` | Loading + error states | 9 tests |
+| `RelationshipFilter.test.jsx` | Audience filter behavior | 6 tests |
+| `Hero.test.jsx` | Hero section rendering | 5 tests |
+| `helpers.test.js` | Utility functions | 12 tests |
+| **Total** | **42 tests** |
+
+---
+
 ## Authentication
 
 - Register at `POST /api/auth/register`
