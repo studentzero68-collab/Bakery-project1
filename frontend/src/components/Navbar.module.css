@@ -1,0 +1,151 @@
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--warm-white);
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 4px 20px var(--shadow);
+}
+
+.inner {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 24px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  line-height: 1.1;
+  flex-shrink: 0;
+}
+
+.brandMain {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 900;
+  color: var(--brown);
+}
+
+.brandSub {
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 600;
+}
+
+.nav {
+  display: flex;
+  gap: 4px;
+  flex: 1;
+  justify-content: center;
+}
+
+.link {
+  padding: 8px 16px;
+  border-radius: var(--radius-pill);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--brown-soft);
+  text-decoration: none;
+  transition: 0.2s ease;
+}
+
+.link:hover {
+  background: var(--blush);
+  color: var(--gold);
+  text-decoration: none;
+}
+
+.link.active {
+  background: var(--cream-dark);
+  color: var(--brown);
+  font-weight: 600;
+}
+
+.auth {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.userGreeting {
+  font-size: 13px;
+  color: var(--brown-muted);
+}
+
+.authBtn {
+  font-size: 13px;
+  padding: 8px 18px;
+}
+
+/* Hamburger */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  padding: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-left: auto;
+}
+
+.hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--brown-soft);
+  border-radius: 2px;
+  transition: 0.2s;
+}
+
+/* Mobile drawer */
+.drawer {
+  display: flex;
+  flex-direction: column;
+  background: var(--warm-white);
+  border-top: 1px solid var(--border);
+  padding: 12px 24px 20px;
+  gap: 4px;
+}
+
+.drawerLink {
+  display: block;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--brown-soft);
+  text-decoration: none;
+  background: none;
+  border: none;
+  text-align: left;
+  transition: 0.2s;
+  cursor: pointer;
+  font-family: var(--font-body);
+}
+
+.drawerLink:hover {
+  background: var(--blush);
+  color: var(--gold);
+  text-decoration: none;
+}
+
+@media (max-width: 768px) {
+  .nav,
+  .auth {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+}
