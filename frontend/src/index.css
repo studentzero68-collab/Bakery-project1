@@ -1,0 +1,235 @@
+/* ============================================================
+   Baker's Delight — Global Styles
+   Preserving the original bakery visual identity
+   ============================================================ */
+
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* DESIGN TOKENS — original bakery palette */
+:root {
+  --cream: #e8dcc8;
+  --cream-dark: #dcc8b0;
+  --warm-white: #f0e8dc;
+  --brown: #2a1f15;
+  --brown-soft: #4a3a2a;
+  --brown-muted: #6b5f52;
+  --gold: #a67d52;
+  --gold-light: #d4b084;
+  --honey: #b8885c;
+  --blush: #e0c4b0;
+  --shadow: rgba(42, 31, 21, 0.12);
+  --shadow-deep: rgba(42, 31, 21, 0.18);
+  --border: rgba(166, 125, 82, 0.3);
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'DM Sans', 'Segoe UI', sans-serif;
+
+  /* Semantic */
+  --color-error: #c0392b;
+  --color-success: #27ae60;
+  --radius-sm: 10px;
+  --radius-md: 18px;
+  --radius-lg: 24px;
+  --radius-pill: 999px;
+}
+
+body {
+  background-color: var(--cream);
+  color: var(--brown);
+  min-height: 100vh;
+  font-family: var(--font-body);
+  line-height: 1.6;
+}
+
+/* TYPOGRAPHY */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  color: var(--brown);
+}
+
+a {
+  color: var(--gold);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+button {
+  cursor: pointer;
+  font-family: var(--font-body);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+/* UTILITY CLASSES */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* CARD SHARED */
+.card {
+  background: var(--warm-white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 8px 28px var(--shadow);
+}
+
+/* PILL BADGE */
+.badge {
+  display: inline-block;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  padding: 6px 16px;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 253, 249, 0.7);
+}
+
+/* RELATIONSHIP TAG COLOURS */
+.rel-family {
+  background: #f0ebe4;
+  color: var(--brown-soft);
+  border: 1px solid var(--border);
+}
+
+.rel-lover {
+  background: #fce8ec;
+  color: #a85a6a;
+  border: 1px solid rgba(168, 90, 106, 0.25);
+}
+
+.rel-friend {
+  background: #e8f4f0;
+  color: #4a8a78;
+  border: 1px solid rgba(74, 138, 120, 0.25);
+}
+
+/* SECTION DOT COLOURS */
+.dot-dessert { background: #e8855a; }
+.dot-breakfast { background: #6abf69; }
+.dot-lunch { background: #5b9bd5; }
+
+/* FORM ELEMENTS */
+input,
+textarea,
+select {
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--brown);
+  background: var(--warm-white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  width: 100%;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(166, 125, 82, 0.15);
+}
+
+label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--brown-soft);
+  margin-bottom: 6px;
+  letter-spacing: 0.3px;
+}
+
+/* PRIMARY BUTTON */
+.btn-primary {
+  background: var(--gold);
+  color: var(--warm-white);
+  border: 1px solid var(--gold);
+  padding: 10px 24px;
+  border-radius: var(--radius-pill);
+  font-size: 14px;
+  font-weight: 600;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.btn-primary:hover {
+  background: var(--honey);
+  border-color: var(--honey);
+  transform: translateY(-1px);
+}
+
+/* SECONDARY BUTTON */
+.btn-secondary {
+  background: transparent;
+  color: var(--brown-soft);
+  border: 1px solid var(--border);
+  padding: 10px 24px;
+  border-radius: var(--radius-pill);
+  font-size: 14px;
+  font-weight: 500;
+  transition: 0.2s ease;
+}
+
+.btn-secondary:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+  background: var(--blush);
+}
+
+/* DANGER BUTTON */
+.btn-danger {
+  background: transparent;
+  color: var(--color-error);
+  border: 1px solid rgba(192, 57, 43, 0.3);
+  padding: 8px 18px;
+  border-radius: var(--radius-pill);
+  font-size: 13px;
+  font-weight: 500;
+  transition: 0.2s ease;
+}
+
+.btn-danger:hover {
+  background: rgba(192, 57, 43, 0.08);
+}
+
+/* PAGE WRAPPER */
+.page-wrapper {
+  min-height: calc(100vh - 70px);
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 16px;
+  }
+}
