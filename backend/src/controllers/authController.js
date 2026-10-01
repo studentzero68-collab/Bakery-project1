@@ -5,10 +5,10 @@
  * POST /api/auth/login    → login
  * GET  /api/auth/me       → getMe
  */
-const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 const AppError = require('../utils/AppError');
 const { success } = require('../utils/response');
+const { generateToken } = require('../utils/tokenHelper');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Helpers
@@ -18,11 +18,7 @@ const { success } = require('../utils/response');
  * Signs and returns a JWT for the given user id.
  */
 function signToken(userId) {
-  return jwt.sign(
-    { id: userId },
-    process.env.JWT_SECRET,
-    { expiresIn: process.env.JWT_EXPIRES_IN ?? '7d' }
-  );
+  return generateToken(userId);
 }
 
 /**
