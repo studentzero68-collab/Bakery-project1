@@ -51,6 +51,14 @@ app.use((_req, res, next) => {
   next();
 });
 
+// Simple request logging in development
+if (process.env.NODE_ENV === 'development') {
+  app.use((req, _res, next) => {
+    console.log(`${req.method} ${req.path}`);
+    next();
+  });
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // Health check
 // ─────────────────────────────────────────────────────────────────────────────
