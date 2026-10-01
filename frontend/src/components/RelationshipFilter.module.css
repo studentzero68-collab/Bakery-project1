@@ -76,8 +76,12 @@
 }
 
 @media (max-width: 768px) {
+  .layout {
+    flex-direction: column-reverse;
+  }
+
   .filter {
-    width: 100%;
     position: static;
+    width: 100%;
   }
 }
