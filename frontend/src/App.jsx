@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { AuthProvider } from './hooks/useAuth';
 
 // Layout
 import Navbar from './components/Navbar';
@@ -28,6 +29,7 @@ import ProtectedRoute from './components/ProtectedRoute';
  */
 function App() {
   return (
+    <AuthProvider>
     <Router>
       <div className="app">
         <Navbar />
@@ -66,6 +68,7 @@ function App() {
         <Footer />
       </div>
     </Router>
+    </AuthProvider>
   );
 }
 
