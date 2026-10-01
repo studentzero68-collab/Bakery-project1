@@ -21,7 +21,7 @@ const userSchema = new mongoose.Schema(
     email: {
       type: String,
       required: [true, 'Email is required'],
-      unique: true,
+      unique: true,           // creates the index automatically
       lowercase: true,
       trim: true,
       match: [/^\S+@\S+\.\S+$/, 'Please enter a valid email address'],
@@ -31,8 +31,7 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: [true, 'Password is required'],
       minlength: [8, 'Password must be at least 8 characters'],
-      // select: false ensures password is NOT returned in queries by default
-      select: false,
+      select: false,          // never returned in queries unless explicitly requested
     },
 
     role: {
@@ -48,7 +47,7 @@ const userSchema = new mongoose.Schema(
     timestamps: true,
     toJSON: {
       virtuals: true,
-      // Remove sensitive fields when serialising
+      // Strip the password field whenever the document is serialised
       transform(_doc, ret) {
         delete ret.password;
         return ret;
@@ -58,31 +57,23 @@ const userSchema = new mongoose.Schema(
 );
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Pre-save hook — hash password
+// Pre-save hook — hash password before storing
 // ─────────────────────────────────────────────────────────────────────────────
 
 userSchema.pre('save', async function hashPassword(next) {
-  // Only hash if the password field has actually changed
   if (!this.isModified('password')) return next();
-
   const saltRounds = parseInt(process.env.BCRYPT_SALT_ROUNDS ?? '12', 10);
   this.password = await bcrypt.hash(this.password, saltRounds);
   next();
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Instance method — compare plain password against stored hash
+// Instance method — compare a plain-text password against the stored hash
 // ─────────────────────────────────────────────────────────────────────────────
 
 userSchema.methods.comparePassword = async function comparePassword(plain) {
   return bcrypt.compare(plain, this.password);
 };
-
-// ─────────────────────────────────────────────────────────────────────────────
-// Index
-// ─────────────────────────────────────────────────────────────────────────────
-
-userSchema.index({ email: 1 }, { unique: true });
 
 const User = mongoose.model('User', userSchema);
 
