@@ -230,4 +230,9 @@
   .article {
     padding: 28px 20px;
   }
+
+  .metaRow {
+    gap: 16px;
+    padding: 16px;
+  }
 }
