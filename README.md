@@ -4,50 +4,159 @@
 
 ---
 
-## What is this?
+## Project story
 
-Baker's Delight is a personal recipe cookbook built as a web project. It is not just a list of recipes — it is a reflection of who I am. A gamer, an anime fan, a disciplined person, and someone who believes that baking is one of the most intentional acts of care you can show another person.
+This project started as a vanilla **HTML + CSS + JavaScript** personal recipe/cookbook application.  
+It has since evolved into a complete **full-stack web application** as part of a Full Stack Web Development journey.
 
-Every recipe in this project comes with more than just ingredients and steps. It comes with a meaning, a quirky joke, and a suggestion for who you should make it for — your family, your lover, or your friends.
+```
+HTML + CSS + JavaScript
+        ↓
+React (Vite)
+        ↓
+Node.js + Express
+        ↓
+REST API
+        ↓
+MongoDB + Mongoose
+        ↓
+JWT Authentication + Role-based Authorization
+        ↓
+Admin CRUD
+        ↓
+Automated Testing
+        ↓
+Deployment-ready
+```
+
+The original bakery identity — Baker's Delight, Mukelani's Kitchen, the recipes, the personality — is fully preserved.  
+The goal was to upgrade the technology without destroying what made it personal.
 
 ---
 
-## What's inside
+## What is Baker's Delight?
 
-- **Desserts** — Sweet wins. The final boss of any meal.
-- **Breakfast** — Start your day like a main character.
-- **Lunch Bakes** — Savoury power-ups for the middle of the day.
+A personal recipe/cookbook application. Every recipe comes with:
 
-Each recipe card includes:
-- Ingredients list
-- Step-by-step instructions
-- Prep and cook time
+- Ingredients and step-by-step instructions
+- Preparation time and cooking/baking time
 - A quirky joke
-- What the bake symbolizes
-- Who to make it for (Family / Lover / Friend)
+- What the recipe symbolises (meaning)
+- Who to make it for — **Family**, **Friend**, or **Romantic**
+
+### Categories
+
+- 🍰 **Desserts** — Sweet wins. The final boss of any meal.
+- 🥞 **Breakfast** — Start your day like a main character.
+- 🥗 **Lunch Bakes** — Savoury power-ups for the middle of the day.
 
 ---
 
-## Tech used
+## Technology stack
 
-- HTML
-- CSS
-- JavaScript
-- Git & GitHub
+### Frontend
+- React 18
+- Vite
+- React Router v6
+- CSS custom properties (original bakery palette preserved)
+
+### Backend
+- Node.js
+- Express.js
+- MongoDB
+- Mongoose
+- JWT (jsonwebtoken)
+- bcryptjs
+- CORS
+- Express Validator
+
+### Testing
+- Jest
+- Supertest (backend)
+- React Testing Library (frontend)
 
 ---
 
-## Project status
+## Project structure
 
- Currently in progress — recipes and features are being added step by step.
+```
+Bakery-project1/
+│
+├── frontend/          — React application (Vite)
+├── backend/           — Express REST API
+├── docs/              — Architecture and project documentation
+├── package.json       — Root scripts
+├── .gitignore
+└── README.md
+```
+
+See `frontend/README.md` and `backend/README.md` for detailed setup instructions.
 
 ---
 
-## Why I built this
+## Quick start
 
-I didn't grow up having everything handed to me, so I learned early to build what I want. This project is part of my journey studying Full Stack Web Development, but I wanted to make something for myself and others who have a passion for being themselves and baking. It is also just genuinely mine — my personality, my recipes, my way of showing people I care.
+### Prerequisites
+- Node.js 18+
+- MongoDB (local or Atlas connection string)
+- npm
 
-Baking and coding are not that different. Both take patience, precision, and a willingness to start over when something doesn't work.
+### Install dependencies
+```bash
+npm run install:all
+```
+
+### Configure environment
+```bash
+# Backend
+cp backend/.env.example backend/.env
+# Edit backend/.env with your MongoDB URI and JWT secret
+
+# Frontend
+cp frontend/.env.example frontend/.env
+# Edit frontend/.env with your API URL
+```
+
+### Run in development
+```bash
+# Terminal 1 — backend
+npm run dev:backend
+
+# Terminal 2 — frontend
+npm run dev:frontend
+```
+
+### Run tests
+```bash
+npm run test:backend
+npm run test:frontend
+```
+
+---
+
+## Authentication
+
+- Register at `POST /api/auth/register`
+- Login at `POST /api/auth/login` to receive a JWT
+- Admin routes require `role: "admin"` — set this in the database or via seed
+
+---
+
+## API overview
+
+| Method | Endpoint | Purpose | Auth |
+|---|---|---|---|
+| GET | `/api/recipes` | List recipes (filterable) | Public |
+| GET | `/api/recipes/:id` | Get one recipe | Public |
+| GET | `/api/recipes/category/:category` | Filter by category | Public |
+| POST | `/api/recipes` | Create recipe | Admin |
+| PUT | `/api/recipes/:id` | Update recipe | Admin |
+| DELETE | `/api/recipes/:id` | Delete recipe | Admin |
+| POST | `/api/auth/register` | Register | Public |
+| POST | `/api/auth/login` | Login | Public |
+| GET | `/api/auth/me` | Current user | Authenticated |
+
+Full API documentation: `backend/README.md`
 
 ---
 
@@ -55,8 +164,8 @@ Baking and coding are not that different. Both take patience, precision, and a w
 
 **Mukelani N. Sindana**  
 Full Stack Web Developer in training | iHub Africa | Gauteng, South Africa  
-Gamer · Anime fan · precise baker
+Gamer · Anime fan · Disciplined baker
 
 ---
 
-*Built with flour, butter, and discipline.* 
+*Built with flour, butter, and discipline.*
