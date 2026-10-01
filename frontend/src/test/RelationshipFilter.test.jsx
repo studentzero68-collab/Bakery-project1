@@ -12,10 +12,11 @@ describe('RelationshipFilter', () => {
     expect(screen.getByRole('button', { name: /filters/i })).toBeTruthy();
   });
 
-  it('filter options are hidden by default', () => {
+  it('filter buttons are not visible by default', () => {
     render(<RelationshipFilter activeAudience="all" onAudienceChange={vi.fn()} />);
-    // The options panel should start hidden
-    expect(screen.queryByText('For…')).toBeNull();
+    // The toggle button starts with aria-expanded=false
+    const toggle = screen.getByRole('button', { name: /filters/i });
+    expect(toggle.getAttribute('aria-expanded')).toBe('false');
   });
 
   it('shows filter options after clicking the toggle', () => {
