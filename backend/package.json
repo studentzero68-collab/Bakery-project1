@@ -21,15 +21,21 @@
   },
   "devDependencies": {
     "jest": "^29.7.0",
+    "mongodb-memory-server": "^9.5.0",
     "nodemon": "^3.1.0",
     "supertest": "^6.3.4"
   },
   "jest": {
     "testEnvironment": "node",
-    "testTimeout": 15000,
+    "testTimeout": 30000,
     "testPathPattern": "src/tests"
   },
-  "keywords": ["bakery", "express", "api", "mongodb"],
+  "keywords": [
+    "bakery",
+    "express",
+    "api",
+    "mongodb"
+  ],
   "author": "Mukelani N. Sindana",
   "license": "MIT"
 }

@@ -1,39 +1,42 @@
 /**
  * helpers.js — shared test utilities.
  *
- * Provides database connection/teardown and token generation
- * helpers used across all test files.
+ * Uses mongodb-memory-server so tests run without a real MongoDB instance.
+ * Each test file gets a fresh in-memory database — no external dependencies needed.
  */
 require('dotenv').config();
 
 const mongoose = require('mongoose');
+const { MongoMemoryServer } = require('mongodb-memory-server');
 const User = require('../models/User');
 const { generateToken } = require('../utils/tokenHelper');
 
-const TEST_URI =
-  process.env.TEST_MONGODB_URI ?? 'mongodb://localhost:27017/bakers-delight-test';
+let mongod;
 
 /**
- * Connect to the test database.
+ * connectTestDB — starts an in-memory MongoDB instance and connects Mongoose.
  * Called in beforeAll() of each test file.
  */
 async function connectTestDB() {
-  if (mongoose.connection.readyState === 0) {
-    await mongoose.connect(TEST_URI);
-  }
+  mongod = await MongoMemoryServer.create();
+  const uri = mongod.getUri();
+  await mongoose.connect(uri);
 }
 
 /**
- * Close and clean up the test database connection.
+ * disconnectTestDB — drops the database, closes the connection,
+ * and stops the in-memory server.
  * Called in afterAll() of each test file.
  */
 async function disconnectTestDB() {
   await mongoose.connection.dropDatabase();
   await mongoose.connection.close();
+  await mongod.stop();
 }
 
 /**
- * clearCollections — clears specific collections between tests.
+ * clearCollections — removes all documents from the given models.
+ * Called in beforeEach() to isolate each test.
  */
 async function clearCollections(...models) {
   for (const Model of models) {
