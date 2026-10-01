@@ -1,80 +1,49 @@
 /**
- * User.js — Mongoose model for Baker's Delight users.
+ * User.js — User helpers for Baker's Delight.
+ *
+ * Mongoose has been removed. The database is now Supabase (PostgreSQL).
+ * This file provides the password-hashing helpers that the auth
+ * controller still needs.
+ *
+ * Supabase table: users
+ * Columns: id (uuid), name, email, role (default 'user'),
+ *          password_hash, created_at, updated_at
  *
  * Passwords are NEVER stored in plain text.
- * bcryptjs hashes the password before every save.
  */
-const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
 const ROLES = ['user', 'admin'];
 
-const userSchema = new mongoose.Schema(
-  {
-    name: {
-      type: String,
-      required: [true, 'Name is required'],
-      trim: true,
-      maxlength: [80, 'Name must be 80 characters or fewer'],
-    },
-
-    email: {
-      type: String,
-      required: [true, 'Email is required'],
-      unique: true,           // creates the index automatically
-      lowercase: true,
-      trim: true,
-      match: [/^\S+@\S+\.\S+$/, 'Please enter a valid email address'],
-    },
-
-    password: {
-      type: String,
-      required: [true, 'Password is required'],
-      minlength: [8, 'Password must be at least 8 characters'],
-      select: false,          // never returned in queries unless explicitly requested
-    },
-
-    role: {
-      type: String,
-      enum: {
-        values: ROLES,
-        message: `Role must be one of: ${ROLES.join(', ')}`,
-      },
-      default: 'user',
-    },
-  },
-  {
-    timestamps: true,
-    toJSON: {
-      virtuals: true,
-      // Strip the password field whenever the document is serialised
-      transform(_doc, ret) {
-        delete ret.password;
-        return ret;
-      },
-    },
-  }
-);
-
-// ─────────────────────────────────────────────────────────────────────────────
-// Pre-save hook — hash password before storing
-// ─────────────────────────────────────────────────────────────────────────────
-
-userSchema.pre('save', async function hashPassword(next) {
-  if (!this.isModified('password')) return next();
+/**
+ * hashPassword — hashes a plain-text password.
+ * @param {string} plain
+ * @returns {Promise<string>} bcrypt hash
+ */
+async function hashPassword(plain) {
   const saltRounds = parseInt(process.env.BCRYPT_SALT_ROUNDS ?? '12', 10);
-  this.password = await bcrypt.hash(this.password, saltRounds);
-  next();
-});
+  return bcrypt.hash(plain, saltRounds);
+}
 
-// ─────────────────────────────────────────────────────────────────────────────
-// Instance method — compare a plain-text password against the stored hash
-// ─────────────────────────────────────────────────────────────────────────────
+/**
+ * comparePassword — compares a plain-text password against a stored hash.
+ * @param {string} plain
+ * @param {string} hash
+ * @returns {Promise<boolean>}
+ */
+async function comparePassword(plain, hash) {
+  return bcrypt.compare(plain, hash);
+}
 
-userSchema.methods.comparePassword = async function comparePassword(plain) {
-  return bcrypt.compare(plain, this.password);
-};
+/**
+ * sanitiseUser — strips sensitive fields before sending a user to the client.
+ * @param {object} user  — row from the users table
+ * @returns {object}
+ */
+function sanitiseUser(user) {
+  if (!user) return null;
+  const { password_hash, ...safe } = user;
+  return safe;
+}
 
-const User = mongoose.model('User', userSchema);
-
-module.exports = User;
+module.exports = { ROLES, hashPassword, comparePassword, sanitiseUser };

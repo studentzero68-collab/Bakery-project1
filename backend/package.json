@@ -1,7 +1,7 @@
 {
   "name": "bakers-delight-backend",
   "version": "1.0.0",
-  "description": "Baker's Delight — Express REST API",
+  "description": "Baker's Delight — Express REST API backed by Supabase/PostgreSQL",
   "main": "src/server.js",
   "scripts": {
     "start": "node src/server.js",
@@ -12,17 +12,16 @@
     "test:coverage": "jest --runInBand --forceExit --coverage"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.43.4",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.18.3",
     "express-validator": "^7.0.1",
-    "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.2.2"
+    "jsonwebtoken": "^9.0.2"
   },
   "devDependencies": {
     "jest": "^29.7.0",
-    "mongodb-memory-server": "^9.5.0",
     "nodemon": "^3.1.0",
     "supertest": "^6.3.4"
   },
@@ -35,7 +34,8 @@
     "bakery",
     "express",
     "api",
-    "mongodb"
+    "supabase",
+    "postgresql"
   ],
   "author": "Mukelani N. Sindana",
   "license": "MIT"

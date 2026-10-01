@@ -1,34 +1,21 @@
 /**
- * authController.js — handlers for authentication endpoints.
+ * authController.js — authentication handlers for Baker's Delight.
+ *
+ * Database: Supabase (PostgreSQL)
+ * Table:    users
+ *
+ * Custom JWT flow — we manage tokens ourselves so the frontend
+ * API contract (Bearer token in Authorization header) stays unchanged.
  *
  * POST /api/auth/register → register
  * POST /api/auth/login    → login
  * GET  /api/auth/me       → getMe
  */
-const User = require('../models/User');
+const { supabase } = require('../config/supabase');
 const AppError = require('../utils/AppError');
 const { success } = require('../utils/response');
 const { generateToken } = require('../utils/tokenHelper');
-
-// ─────────────────────────────────────────────────────────────────────────────
-// Helpers
-// ─────────────────────────────────────────────────────────────────────────────
-
-/**
- * Signs and returns a JWT for the given user id.
- */
-function signToken(userId) {
-  return generateToken(userId);
-}
-
-/**
- * Strips the password field from a user document before sending.
- */
-function sanitiseUser(user) {
-  const obj = user.toObject ? user.toObject() : { ...user };
-  delete obj.password;
-  return obj;
-}
+const { hashPassword, comparePassword, sanitiseUser } = require('../models/User');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // POST /api/auth/register
@@ -38,14 +25,33 @@ async function register(req, res, next) {
   try {
     const { name, email, password } = req.body;
 
-    // Prevent duplicate registrations
-    const exists = await User.findOne({ email });
-    if (exists) {
+    // Check for existing account
+    const { data: existing } = await supabase
+      .from('users')
+      .select('id')
+      .eq('email', email.toLowerCase())
+      .maybeSingle();
+
+    if (existing) {
       return next(new AppError('An account with that email already exists', 409));
     }
 
-    const user = await User.create({ name, email, password });
-    const token = signToken(user._id);
+    const password_hash = await hashPassword(password);
+
+    const { data: user, error } = await supabase
+      .from('users')
+      .insert({
+        name,
+        email: email.toLowerCase(),
+        password_hash,
+        role: 'user',
+      })
+      .select()
+      .single();
+
+    if (error) return next(new AppError(error.message, 500));
+
+    const token = generateToken(user.id);
 
     return res.status(201).json({
       success: true,
@@ -65,15 +71,21 @@ async function login(req, res, next) {
   try {
     const { email, password } = req.body;
 
-    // Explicitly select password (it is select:false by default)
-    const user = await User.findOne({ email }).select('+password');
+    // Fetch the user including password_hash
+    const { data: user, error } = await supabase
+      .from('users')
+      .select('*')
+      .eq('email', email.toLowerCase())
+      .maybeSingle();
 
-    if (!user || !(await user.comparePassword(password))) {
+    if (error) return next(new AppError(error.message, 500));
+
+    if (!user || !(await comparePassword(password, user.password_hash))) {
       // Deliberately vague — don't reveal which part is wrong
       return next(new AppError('Invalid email or password', 401));
     }
 
-    const token = signToken(user._id);
+    const token = generateToken(user.id);
 
     return res.status(200).json({
       success: true,
@@ -86,13 +98,13 @@ async function login(req, res, next) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// GET /api/auth/me  — requires protect middleware
+// GET /api/auth/me — requires protect middleware
 // ─────────────────────────────────────────────────────────────────────────────
 
 async function getMe(req, res, next) {
   try {
-    // req.user is attached by the protect middleware
-    return success(res, sanitiseUser(req.user));
+    // req.user is attached by the protect middleware (already sanitised)
+    return success(res, req.user);
   } catch (err) {
     next(err);
   }
