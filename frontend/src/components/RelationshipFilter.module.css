@@ -1,0 +1,83 @@
+.filter {
+  width: 170px;
+  flex-shrink: 0;
+  background: var(--warm-white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 10px 12px;
+  position: sticky;
+  top: 130px;
+  box-shadow: 0 12px 24px var(--shadow);
+  transition: 0.25s ease;
+}
+
+.toggle {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  background: var(--cream);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  color: var(--brown-soft);
+  padding: 8px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.chevron {
+  transition: transform 0.2s ease;
+  display: inline-block;
+}
+
+.open .chevron {
+  transform: rotate(180deg);
+}
+
+.options {
+  padding-top: 12px;
+}
+
+.heading {
+  font-size: 12px;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: var(--brown-muted);
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.btn {
+  display: block;
+  width: 100%;
+  margin-bottom: 8px;
+  background: var(--cream);
+  border: 1px solid var(--border);
+  color: var(--brown-soft);
+  padding: 8px 10px;
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.2s ease;
+  text-align: left;
+  font-family: var(--font-body);
+}
+
+.btn:hover,
+.btn.active {
+  background: var(--blush);
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+@media (max-width: 768px) {
+  .filter {
+    width: 100%;
+    position: static;
+  }
+}
