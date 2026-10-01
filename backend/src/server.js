@@ -13,10 +13,20 @@ const PORT = process.env.PORT || 5000;
 async function start() {
   await connectDB();
 
-  app.listen(PORT, () => {
+  const server = app.listen(PORT, () => {
     console.log(`🥐 Baker's Delight API running on port ${PORT}`);
     console.log(`   Environment: ${process.env.NODE_ENV ?? 'development'}`);
     console.log(`   API base:    http://localhost:${PORT}/api`);
+  });
+
+  // Graceful shutdown
+  process.on('SIGTERM', () => {
+    console.log('SIGTERM received — shutting down gracefully');
+    server.close(async () => {
+      const { disconnectDB } = require('./config/db');
+      await disconnectDB();
+      process.exit(0);
+    });
   });
 }
 

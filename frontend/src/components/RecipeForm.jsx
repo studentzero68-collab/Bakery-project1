@@ -27,6 +27,9 @@ const AUDIENCES = ['family', 'friend', 'romantic'];
  *
  * Props:
  *   existingRecipe — populated recipe object for edit mode; null for create.
+ *
+ * Ingredients and steps use textarea with newline separation for simplicity.
+ * The backend expects arrays, so we split on newlines before submitting.
  */
 function RecipeForm({ existingRecipe = null }) {
   const navigate = useNavigate();
