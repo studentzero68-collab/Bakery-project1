@@ -1,0 +1,20 @@
+.page {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 40px 24px 80px;
+}
+
+.back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--brown-muted);
+  margin-bottom: 28px;
+  transition: color 0.2s;
+}
+
+.back:hover {
+  color: var(--gold);
+  text-decoration: none;
+}
