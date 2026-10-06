@@ -1,0 +1,32 @@
+.sections {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px;
+  align-items: start;
+}
+
+.empty {
+  text-align: center;
+  padding: 80px 24px;
+  color: var(--brown-muted);
+  background: var(--cream);
+  border: 2px dashed var(--gold-light);
+  border-radius: var(--radius-lg);
+}
+
+.empty p:first-child {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--brown-soft);
+}
+
+.emptyHint {
+  font-size: 13px;
+}

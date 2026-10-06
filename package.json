@@ -1,0 +1,21 @@
+{
+  "name": "bakers-delight",
+  "version": "1.0.0",
+  "description": "Baker's Delight — Mukelani's Kitchen. Full-stack recipe application evolved from a vanilla HTML/CSS/JS project.",
+  "private": true,
+  "scripts": {
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev:backend": "cd backend && npm run dev",
+    "install:all": "npm install && cd frontend && npm install && cd ../backend && npm install",
+    "build:frontend": "cd frontend && npm run build",
+    "test:backend": "cd backend && npm test",
+    "test:frontend": "cd frontend && npm test"
+  },
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "keywords": ["bakery", "recipes", "react", "express", "mongodb"],
+  "author": "Mukelani N. Sindana",
+  "license": "MIT"
+}

@@ -1,0 +1,95 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  background: var(--warm-white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 40px;
+  box-shadow: 0 8px 28px var(--shadow);
+}
+
+.serverError {
+  background: rgba(192, 57, 43, 0.08);
+  border: 1px solid rgba(192, 57, 43, 0.25);
+  border-radius: var(--radius-sm);
+  color: var(--color-error);
+  font-size: 13px;
+  padding: 12px 16px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.hint {
+  font-weight: 400;
+  color: var(--brown-muted);
+  font-size: 11px;
+}
+
+.fieldError {
+  font-size: 12px;
+  color: var(--color-error);
+  margin-top: 2px;
+}
+
+.audienceGroup {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.audBtn {
+  padding: 8px 18px;
+  border-radius: var(--radius-pill);
+  font-size: 13px;
+  font-weight: 500;
+  background: var(--cream);
+  border: 1px solid var(--border);
+  color: var(--brown-soft);
+  transition: 0.2s;
+}
+
+.audBtn:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.audBtn.audActive {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--warm-white);
+  font-weight: 600;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  padding-top: 8px;
+  border-top: 1px solid var(--border);
+}
+
+@media (max-width: 600px) {
+  .form {
+    padding: 24px 20px;
+  }
+
+  .row {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,238 @@
+.article {
+  background: var(--warm-white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 48px;
+  box-shadow: 0 12px 40px var(--shadow);
+}
+
+.header {
+  margin-bottom: 28px;
+}
+
+.categoryBadge {
+  display: inline-block;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-weight: 600;
+  padding: 4px 14px;
+  border-radius: var(--radius-pill);
+  margin-bottom: 14px;
+}
+
+.categoryBadge[data-category='dessert'] {
+  background: rgba(232, 133, 90, 0.15);
+  color: #c0552a;
+}
+
+.categoryBadge[data-category='breakfast'] {
+  background: rgba(106, 191, 105, 0.15);
+  color: #3a7a38;
+}
+
+.categoryBadge[data-category='lunch'] {
+  background: rgba(91, 155, 213, 0.15);
+  color: #2a5c8a;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  font-weight: 900;
+  line-height: 1.1;
+  margin-bottom: 12px;
+}
+
+.description {
+  font-size: 15px;
+  color: var(--brown-soft);
+  line-height: 1.65;
+}
+
+.imageWrapper {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  margin-bottom: 28px;
+  max-height: 420px;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.joke {
+  background: var(--cream);
+  border-left: 4px solid var(--gold);
+  padding: 14px 18px;
+  font-size: 14px;
+  color: var(--brown-soft);
+  font-style: italic;
+  border-radius: 0 12px 12px 0;
+  margin-bottom: 28px;
+}
+
+.metaRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-bottom: 28px;
+  padding: 20px 24px;
+  background: var(--cream);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+}
+
+.metaItem {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.metaLabel {
+  font-size: 11px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 600;
+}
+
+.metaValue {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--brown);
+}
+
+.audienceTags {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.audTag {
+  font-size: 11px;
+  padding: 3px 10px;
+  border-radius: var(--radius-pill);
+  font-weight: 500;
+}
+
+.meaningBlock {
+  background: var(--blush);
+  border: 1px solid rgba(166, 125, 82, 0.2);
+  border-radius: var(--radius-md);
+  padding: 20px 24px;
+  margin-bottom: 32px;
+}
+
+.meaningLabel {
+  font-size: 11px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.meaningText {
+  font-size: 14px;
+  color: var(--brown-soft);
+  line-height: 1.6;
+}
+
+.section {
+  margin-bottom: 36px;
+}
+
+.sectionHeading {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--brown);
+  margin-bottom: 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+
+.ingredientList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ingredientList li {
+  font-size: 14px;
+  color: var(--brown-soft);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  background: var(--cream);
+  border-radius: 8px;
+}
+
+.ingredientList li::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--gold);
+  flex-shrink: 0;
+}
+
+.videoWrapper {
+  margin-bottom: 28px;
+  border-radius: 14px;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+}
+
+.videoFrame {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.stepsList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-left: 20px;
+  list-style: decimal;
+}
+
+.stepsList li {
+  font-size: 14px;
+  color: var(--brown-soft);
+  line-height: 1.6;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(166, 125, 82, 0.08);
+}
+
+.stepsList li:last-child {
+  border-bottom: none;
+}
+
+.stepsList li::marker {
+  color: var(--gold);
+  font-weight: 700;
+}
+
+.createdAt {
+  font-size: 12px;
+  color: var(--brown-muted);
+  text-align: right;
+  margin-top: 24px;
+}
+
+@media (max-width: 640px) {
+  .article {
+    padding: 28px 20px;
+  }
+
+  .metaRow {
+    gap: 16px;
+    padding: 16px;
+  }
+}

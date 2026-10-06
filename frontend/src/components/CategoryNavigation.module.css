@@ -1,0 +1,51 @@
+.catNav {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  padding: 20px;
+  flex-wrap: wrap;
+  background: var(--warm-white);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 70px; /* below the 70px navbar */
+  z-index: 20;
+  box-shadow: 0 4px 20px var(--shadow);
+}
+
+.catBtn {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--brown-soft);
+  padding: 10px 22px;
+  border-radius: var(--radius-pill);
+  font-size: 14px;
+  font-weight: 500;
+  transition: 0.25s ease;
+}
+
+.catBtn:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+  background: var(--blush);
+}
+
+.catBtn.active {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--warm-white);
+  font-weight: 600;
+}
+
+.layout {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 24px 24px 40px;
+}
+
+.main {
+  flex: 1;
+  min-width: 0;
+}
