@@ -1,76 +1,86 @@
 /**
- * seed.js — database seeding script.
+ * seed.js — database seeding script for Supabase/PostgreSQL.
  *
- * Populates MongoDB with the original Baker's Delight recipes.
+ * Populates the Supabase `recipes` table with the original Baker's Delight recipes.
  *
- * Usage:
- *   npm run seed               — inserts recipes (skips existing by title)
- *   npm run seed -- --force    — drops existing recipes and re-seeds
- *   npm run seed -- --clear    — drops all recipes without re-seeding
+ * Usage (from the backend/ directory):
+ *   node src/seed/seed.js               — upserts all recipes (safe to re-run)
+ *   node src/seed/seed.js --clear       — deletes all recipes without re-seeding
+ *   node src/seed/seed.js --force       — deletes then re-inserts all recipes
  *
- * Requires MONGODB_URI in backend/.env (or backend/.env.example copied to .env)
+ * Requires SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in backend/.env
  */
 require('dotenv').config();
-const mongoose = require('mongoose');
-const Recipe = require('../models/Recipe');
+
+const { supabase } = require('../config/supabase');
 const { desserts, breakfast, lunch } = require('./recipes');
 
-const MONGO_URI = process.env.MONGODB_URI ?? 'mongodb://localhost:27017/bakers-delight';
 const allRecipes = [...desserts, ...breakfast, ...lunch];
+
+/**
+ * Maps the seed data (camelCase) to the Supabase column names (snake_case).
+ */
+function toRow(recipe) {
+  return {
+    title:       recipe.title,
+    category:    recipe.category,
+    description: recipe.description ?? null,
+    joke:        recipe.joke        ?? null,
+    meaning:     recipe.meaning     ?? null,
+    prep_time:   recipe.prepTime    ?? null,
+    cook_time:   recipe.cookTime    ?? null,
+    ingredients: recipe.ingredients ?? [],
+    steps:       recipe.steps       ?? [],
+    audiences:   recipe.audiences   ?? [],
+    image:       recipe.image       ?? null,
+    video:       recipe.video       ?? null,
+  };
+}
 
 async function seed() {
   const args = process.argv.slice(2);
-  const force = args.includes('--force');
+  const force     = args.includes('--force');
   const clearOnly = args.includes('--clear');
 
-  console.log('🥐  Baker\'s Delight — Database Seed');
-  console.log(`    MongoDB URI: ${MONGO_URI}`);
+  console.log("🥐  Baker's Delight — Supabase Seed");
 
-  try {
-    await mongoose.connect(MONGO_URI);
-    console.log('✅  Connected to MongoDB\n');
+  // ── Clear ──────────────────────────────────────────────────────────────────
+  if (force || clearOnly) {
+    const { error } = await supabase
+      .from('recipes')
+      .delete()
+      .neq('id', '00000000-0000-0000-0000-000000000000'); // delete all rows
 
-    if (force || clearOnly) {
-      await Recipe.deleteMany({});
-      console.log('🗑   Cleared existing recipes');
+    if (error) {
+      console.error('❌  Failed to clear recipes:', error.message);
+      process.exit(1);
     }
-
-    if (clearOnly) {
-      console.log('\n✅  Database cleared. Done.');
-      return;
-    }
-
-    let inserted = 0;
-    let skipped = 0;
-
-    for (const recipeData of allRecipes) {
-      const existing = await Recipe.findOne({ title: recipeData.title });
-      if (existing && !force) {
-        skipped++;
-        continue;
-      }
-
-      await Recipe.findOneAndUpdate(
-        { title: recipeData.title },
-        recipeData,
-        { upsert: true, new: true, runValidators: true }
-      );
-      inserted++;
-      console.log(`  ✓  ${recipeData.category.padEnd(9)} — ${recipeData.title}`);
-    }
-
-    console.log(`\n📊  Summary:`);
-    console.log(`    Inserted/Updated: ${inserted}`);
-    console.log(`    Skipped (already exist): ${skipped}`);
-    console.log(`    Total recipes in DB: ${await Recipe.countDocuments()}`);
-    console.log('\n✅  Seed complete!');
-  } catch (err) {
-    console.error('\n❌  Seed failed:', err.message);
-    process.exit(1);
-  } finally {
-    await mongoose.connection.close();
-    console.log('🔌  Disconnected from MongoDB');
+    console.log('🗑   Cleared existing recipes');
   }
+
+  if (clearOnly) {
+    console.log('\n✅  Database cleared. Done.');
+    process.exit(0);
+  }
+
+  // ── Upsert ─────────────────────────────────────────────────────────────────
+  const rows = allRecipes.map(toRow);
+
+  const { data, error } = await supabase
+    .from('recipes')
+    .upsert(rows, { onConflict: 'title', ignoreDuplicates: false })
+    .select('id, title, category');
+
+  if (error) {
+    console.error('❌  Seed failed:', error.message);
+    process.exit(1);
+  }
+
+  console.log(`\n📊  Upserted ${data.length} recipes:`);
+  data.forEach((r) =>
+    console.log(`  ✓  ${r.category.padEnd(9)} — ${r.title}`)
+  );
+  console.log('\n✅  Seed complete!');
 }
 
 seed();

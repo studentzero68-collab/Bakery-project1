@@ -7,7 +7,8 @@
  * Usage:
  *   router.post('/recipes', protect, authorize('admin'), createRecipe);
  */
-const User = require('../models/User');
+const { supabase } = require('../config/supabase');
+const { sanitiseUser } = require('../models/User');
 const AppError = require('../utils/AppError');
 const { verifyToken } = require('../utils/tokenHelper');
 
@@ -25,13 +26,18 @@ async function protect(req, _res, next) {
     const token = authHeader.split(' ')[1];
     const decoded = verifyToken(token);
 
-    // Attach the live user document (excludes password)
-    const user = await User.findById(decoded.id).select('-password');
-    if (!user) {
+    // Fetch the live user from Supabase (excludes password_hash via sanitiseUser)
+    const { data: user, error } = await supabase
+      .from('users')
+      .select('*')
+      .eq('id', decoded.id)
+      .maybeSingle();
+
+    if (error || !user) {
       throw new AppError('User not found — token may be stale', 401);
     }
 
-    req.user = user;
+    req.user = sanitiseUser(user);
     next();
   } catch (err) {
     next(err);
